@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Dzięki tej stronie sprawdzisz czy twój numer pesel jest poprawny. Dzięki algorytmowi wag program sprawdza czy jestes kobietą czy mężczyzna.">
+    <link href="stylle.css"  rel="stylesheet" />
+    <meta name="author" content="Jakub Przepióra">
+    
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Sprawdzanie Numeru Pesel</h1>
+        </div>
+    </header>
+    <main>
+    <h2>Wpisz swój numer PESEL by sprawdzić jego poprawność:</h2>
+    <form name="f">
+        <input name="p1" class="a" id="a" type="text" maxlength='1' onkeyup='zmien(this)'/>    
+        <input name="p2" class="b" id="b" type="text" maxlength='1' onkeyup='zmien(this)'/>     
+        <input name="p3" class="c" id="c" type="text" maxlength='1' onkeyup='zmien(this)'/>     
+        <input name="p4" class="d" id="d" type="text" maxlength='1' onkeyup='zmien(this)'/>    
+        <input name="p5" class="e" id="e" type="text" maxlength='1' onkeyup='zmien(this)'/>    
+        <input name="p6" class="f" id="f" type="text" maxlength='1' onkeyup='zmien(this)'/>   
+        <input name="p7" class="g" id="g" type="text" maxlength='1' onkeyup='zmien(this)'/>    
+        <input name="p8" class="h" id="h" type="text" maxlength='1' onkeyup='zmien(this)'/>  
+        <input name="p9" class="i" id="i" type="text" maxlength='1' onkeyup='zmien(this)'/>  
+        <input name="p10" class="j" id="j" type="text" maxlength='1' onkeyup='zmien(this)'/>    
+        <input name="p11" class="k" id="k" type="text" maxlength='1' onkeyup='zmien(this)'/>    
+    </form>  
+   <form name="sprawdzanie" class="row">
+       <button onclick="waga();return false;">Sprawdż</button>
+       <input type="button" id="ref" value="Refresh" onClick="window.location.reload()">
+
+        <div id="test">
+            Poprawność:
+        </div>
+        <div id="plec">
+            Płeć:
+        </div>
+    </form>
+<script>
+function zmien(pole){
+var d=document.f;
+var numer=pole.name.replace('p','');
+numer++;
+if(pole.value.length>=1&&d.elements['p'+numer])
+d.elements['p'+numer].focus();
+}
+</script>
+ 
+   <script> 
+function waga(){
+    var a = parseInt( document.getElementById("a").value, 10 );
+    var b = parseInt( document.getElementById("b").value, 10 );
+    var c = parseInt( document.getElementById("c").value, 10 );
+    var d = parseInt( document.getElementById("d").value, 10 );
+    var e = parseInt( document.getElementById("e").value, 10 );
+    var f = parseInt( document.getElementById("f").value, 10 );
+    var g = parseInt( document.getElementById("g").value, 10 );
+    var h = parseInt( document.getElementById("h").value, 10 );
+    var i = parseInt( document.getElementById("i").value, 10 );
+    var j = parseInt( document.getElementById("j").value, 10 );
+    var k = parseInt( document.getElementById("k").value, 10 );
+    
+    var wagaa = ((a*1)+(b*3)+(c*7)+(d*9)+(e*1)+(f*3)+(g*7)+(h*9)+(i*1)+(j*3));
+    var mod = (wagaa%10);
+    var odejmowanie = (10-mod);
+    var wynik = (odejmowanie%10);
+    var plec = (j%2);
+    
+    if (wynik == k){
+        document.getElementById('test').innerHTML='Pesel poprawny';
+       if (plec == 0){
+          document.getElementById('plec').innerHTML='Kobieta'; 
+             }
+            else 
+            {
+              document.getElementById('plec').innerHTML='Mężczyzna';   
+            }
+        } 
+    else
+        {
+        document.getElementById('test').innerHTML='Pesel BŁĘDNY ';
+        }
+
+} 
+</script>
+</main>        
+    <footer>
+        <h6> Jakub Przepióra © Wszelkie prawa zastrzeżone 2017.</h6> 
+        <sub>strona została napisana w JavaScript. Twój pesel nie jest zapisywany</sub>
+    </footer>footer> 
+</body>
+
+</html>
